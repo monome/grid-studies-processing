@@ -43,7 +43,7 @@ public void setup() {
 }
 ```
 
-Here the first monome device found is attached. If you want to conenct to a specific grid (if you have more than one connected) you can specify a serial number, which can be found using *serialosc-monitor*.
+Here the first monome device found is attached. If you want to connect to a specific grid (if you have more than one connected) you can specify a serial number, which can be found using *serialosc-monitor*.
 
 ```java
 m = new Monome(this, "m1000011");
@@ -409,3 +409,14 @@ Done!
 - Use the rightmost key in the "trigger" row as an "alt" key.
 	- If "alt" is held while pressing a toggle, clear the entire row.
 	- If "alt" is held while pressing the play row, reverse the direction of play.
+
+	
+## Credits
+
+*Processing* was designed by Ben Fry and Casey Reas and is maintained by the [Processing Foundation](processing).
+
+*monome-processing* was written and is maintained by [Tom Dinchak](https://soundcloud.com/phortran).
+
+This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](monome.org).
+
+Contributions welcome. Submit a pull request to [github.com/monome/grid-studies-python](https://github.com/monome/grid-studies-processing) or e-mail [info@monome.org](mailto:info@monome.org).
