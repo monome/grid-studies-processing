@@ -10,6 +10,8 @@ Download Processing: [processing.org](http://processing.org)
 
 Download the monome installer: [monome.org/docs/begin](http://monome.org/docs/begin)
 
+Download the code examples here: [github.com/monome/grid-studies-processing/releases/latest](https://github.com/monome/grid-studies-processing/releases/latest)
+
 ## Library Setup
 
 Download the monome-processing library:
