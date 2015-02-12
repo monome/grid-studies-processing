@@ -1,6 +1,5 @@
 # Grid Studies: Processing
 
-
 Processing is a programming language, development environment, and online community. Initially created to serve as a software sketchbook and to teach computer programming fundamentals within a visual context, Processing has evolved into a development tool for multi-media performance, including interaction with hardware devices and libraries for sound manipulation. Highly accessible and with a wealth of tutorial information, Processing is a great choice for coding with the monome grid and is fully cross-platform making it highly useful when sharing projects.
 
 ## Prerequisites

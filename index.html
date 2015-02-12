@@ -443,11 +443,11 @@ pre[class*="language-"] {
 <body>
 <h1 id="toc_0">Grid Studies: Processing</h1>
 
-<p>Processing is... (INSERT)</p>
+<p>Processing is a programming language, development environment, and online community. Initially created to serve as a software sketchbook and to teach computer programming fundamentals within a visual context, Processing has evolved into a development tool for multi-media performance, including interaction with hardware devices and libraries for sound manipulation. Highly accessible and with a wealth of tutorial information, Processing is a great choice for coding with the monome grid and is fully cross-platform making it highly useful when sharing projects.</p>
 
 <h2 id="toc_1">Prerequisites</h2>
 
-<p>If you&#39;re very new to Java, here are some tutorials (...)</p>
+<p>If you&#39;re very new to Processing (or Java), it will be very beneficial to work through the &#39;getting started&#39; tutorial available directly from Processing.org: <a href="https://processing.org/tutorials/gettingstarted/">processing.org/tutorials</a></p>
 
 <p>Download Processing: <a href="http://processing.org">processing.org</a></p>
 
@@ -463,7 +463,7 @@ pre[class*="language-"] {
 
 <p><a href="http://www.sojamo.de/libraries/oscp5">sojamo.de/libraries/oscp5</a></p>
 
-<p>These libraries must be copied to the <code>libraries</code> folder of your sketchbook, which is typically <code>~/Documents/Processing/</code> on Mac and <code>/My Documents/Processing/</code> on Windows.</p>
+<p>These libraries must be copied to the <code>libraries</code> folder of your sketchbook, which is typically <code>~/Documents/Processing/</code> on Mac and <code>/Documents/Processing/</code> on Windows.</p>
 
 <p>For example, proper installation of <code>oscP5</code> on the Mac would look like:</p>
 
@@ -537,7 +537,7 @@ led[0][2] = 5;</code></pre>
 
 <h3 id="toc_7">2.3 Coupled interaction</h3>
 
-<p><em>See grid_studies<em>2</em>3.pde for this section.</em></p>
+<p><em>See grid_studies_2_3.pde for this section.</em></p>
 
 <p>The previous code refreshes the grid constantly with every call of <code>draw()</code>, which we typically do not want to do-- it doesn&#39;t make sense to have the computer spend time redrawing the same thing constantly.</p>
 
@@ -549,14 +549,14 @@ led[0][2] = 5;</code></pre>
 
 <p>We add a boolean variable <code>dirty</code> to indicate if the grid needs to be refreshed. We set this to <code>true</code> within <code>setup()</code> so the grid is immediately cleared upon start.</p>
 
-<p>Now we have the can change the grid display upon incoming key data:</p>
+<p>Now we change the grid display upon incoming key data:</p>
 
 <pre><code class="language-java">public void key(int x, int y, int s) {
   led[y][x] = s * 15;
   dirty = true;  
 }</code></pre>
 
-<p>Since <code>s</code> is either 0 or 1, when we multiply it by 15 we get off or full brightness. We set the LED location according to the position incoming key press, x and y.</p>
+<p>Since <code>s</code> is either 0 or 1, when we multiply it by 15 we get off or full brightness. We set the LED location according to the position of the incoming key press, x and y.</p>
 
 <p>We changed the <code>led</code> array, so we specify that the grid need refreshing:</p>
 
@@ -599,7 +599,7 @@ led[0][2] = 5;</code></pre>
 
 <h3 id="toc_10">3.1 Toggles</h3>
 
-<p><em>See grid-studies-3-1.pde for this step.</em></p>
+<p><em>See grid_studies_3_1.pde for this step.</em></p>
 
 <p>First we&#39;ll create a new array called <code>step</code> that can hold 6 rows worth of step data. On key input we&#39;ll look for key-down events in the top six rows:</p>
 
@@ -612,7 +612,7 @@ led[0][2] = 5;</code></pre>
 
 <p>If this condition is true, we toggle the corresponding position in the <code>step</code> data and set the dirty flag so the grid will refresh.</p>
 
-<p>We will &quot;build&quot; the LED display from scratch each time we need to refresh. This will be done inside of <code>draw()</code> so we no longer need the <code>led</code> array to be global. Below we simply copy the <code>step</code> data to the <code>led</code> array, doing the proper multiplication by 11 in order to get almost-full brightness.</p>
+<p>We will &quot;build&quot; the LED display from scratch each time we need to refresh. This will be done inside of <code>draw()</code> so we no longer need the <code>led</code> array to be global. Below we simply copy the <code>step</code> data to the <code>led</code> array, doing the proper multiplication by 15 in order to get full brightness.</p>
 
 <pre><code class="language-java">if(dirty) {
     int[][] led = new int[8][16];
@@ -631,7 +631,7 @@ led[0][2] = 5;</code></pre>
 
 <h3 id="toc_11">3.2 Play</h3>
 
-<p><em>See grid-studies-3-2.pde for this step.</em></p>
+<p><em>See grid_studies_3_2.pde for this step.</em></p>
 
 <p>For simplicity we&#39;re going to make a not-very-smart timer to drive our sequencer. Basically we&#39;ll count <code>draw()</code> cycles and upon matching a specified interval, we&#39;ll take a step forward in the sequence.</p>
 
@@ -659,7 +659,7 @@ public void draw() {
 
 <p>You can change the speed by altering <code>STEP_TIME</code>.</p>
 
-<p>For the redraw we add highlighting for the play position:</p>
+<p>For the redraw we add highlighting for the play position. Note how the multiply by 15 has been decreased to 11 to provide another mid-level brightness. We now have a series of brightness levels helping to indicate playback, lit keys, and currently active keys:</p>
 
 <pre><code class="language-java">int highlight;
 
@@ -679,7 +679,7 @@ for(int x=0;x&lt;16;x++) {
 
 <h3 id="toc_12">3.3 Triggers</h3>
 
-<p><em>See grid-studies-3-3.pde for this step.</em></p>
+<p><em>See grid_studies_3_3.pde for this step.</em></p>
 
 <p>When the playhead advances to a new row we want something to happen which corresponds to the toggled-on rows. We&#39;ll do two things: we&#39;ll show separate visual feedback on the grid in the second-to-last (trigger) row, and we&#39;ll call a draw something to the computer screen.</p>
 
@@ -711,7 +711,7 @@ for(int y=0;y&lt;6;y++)
 
 <h3 id="toc_13">3.4 Cutting</h3>
 
-<p><em>See grid-studies-3-4.pde for this step.</em></p>
+<p><em>See grid_studies_3_4.pde for this step.</em></p>
 
 <p>We will now use the bottom row to dynamically cut the playback position. First let&#39;s add a position display to the last row, which will be inside <code>draw()</code>:</p>
 
@@ -743,9 +743,11 @@ for(int y=0;y&lt;6;y++)
         play_position = 0;
     else 
         play_position++;
+        
+    cutting = false;
 // ...</code></pre>
 
-<p>Now, when pressing keys on the bottom row it will cue the next position to be played.</p>
+<p>Now, when pressing keys on the bottom row it will cue the next position to be played. Note that we set <code>cutting = false</code> after each cycle so that each press only affects the timer once.</p>
 
 <h3 id="toc_14">3.5 Loop</h3>
 
@@ -753,6 +755,13 @@ for(int y=0;y&lt;6;y++)
 
 <pre><code class="language-java">int keys_held, key_last;
 int loop_start, loop_end;</code></pre>
+
+<p>Setup the default loop length to begin with the full range:</p>
+
+<pre><code class="language-java">public void setup() {
+    ...
+    loop_end = 15;
+}</code></pre>
 
 <p>We count keys held on the bottom row thusly:</p>
 
