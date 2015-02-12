@@ -36,6 +36,7 @@ The monome-processing library facilitates easy connection and communication with
 
 ```java
 import org.monome.Monome;
+import oscP5.*;
 	
 Monome m;
 	
