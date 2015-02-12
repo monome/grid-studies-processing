@@ -1,11 +1,11 @@
 # Grid Studies: Processing
 
 
-Processing is... (INSERT)
+Processing is a programming language, development environment, and online community. Initially created to serve as a software sketchbook and to teach computer programming fundamentals within a visual context, Processing has evolved into a development tool for multi-media performance, including interaction with hardware devices and libraries for sound manipulation. Highly accessible and with a wealth of tutorial information, Processing is a great choice for coding with the monome grid and is fully cross-platform making it highly useful when sharing projects.
 
 ## Prerequisites
 
-If you're very new to Java, here are some tutorials (...)
+If you're very new to Processing (or Java), it will be very beneficial to work through the 'getting started' tutorial available directly from Processing.org: [processing.org/tutorials](https://processing.org/tutorials/gettingstarted/)
 
 Download Processing: [processing.org](http://processing.org)
 
@@ -21,7 +21,7 @@ Download the oscP5 library:
 
 [sojamo.de/libraries/oscp5](http://www.sojamo.de/libraries/oscp5)
 
-These libraries must be copied to the `libraries` folder of your sketchbook, which is typically `~/Documents/Processing/` on Mac and `/My Documents/Processing/` on Windows.
+These libraries must be copied to the `libraries` folder of your sketchbook, which is typically `~/Documents/Processing/` on Mac and `/Documents/Processing/` on Windows.
 
 For example, proper installation of `oscP5` on the Mac would look like:
 
@@ -53,7 +53,7 @@ The library communicates with *serialosc* to discover attached devices using OSC
 
 ## 2. Basics
 
-*See grid\_studies_2.pde for this section.*
+*See grid\_studies\_2.pde for this section.*
 
 ![](images/grid-studies-p5-2.png)
 
@@ -101,13 +101,13 @@ And finally, to copy this entire array to the grid:
 m.refresh(led);
 ```
 
-As seen in *grid\_studies_2.pde* we place this code inside the `draw()` function. Upon running the sketch you will see this:
+As seen in *grid\_studies\_2.pde* we place this code inside the `draw()` function. Upon running the sketch you will see this:
 
 ![](images/grid-studies-p5-seen.jpg)
 
 ### 2.3 Coupled interaction
 
-*See grid\_studies_2_3.pde for this section.*
+*See grid\_studies\_2_3.pde for this section.*
 
 The previous code refreshes the grid constantly with every call of `draw()`, which we typically do not want to do-- it doesn't make sense to have the computer spend time redrawing the same thing constantly.
 
@@ -119,7 +119,7 @@ First, we move the `led` array to the top, so that it is global. This way we can
 
 We add a boolean variable `dirty` to indicate if the grid needs to be refreshed. We set this to `true` within `setup()` so the grid is immediately cleared upon start.
 
-Now we have the can change the grid display upon incoming key data:
+Now we change the grid display upon incoming key data:
 
 ```java
 public void key(int x, int y, int s) {
@@ -128,7 +128,7 @@ public void key(int x, int y, int s) {
 }
 ```
 
-Since `s` is either 0 or 1, when we multiply it by 15 we get off or full brightness. We set the LED location according to the position incoming key press, x and y.
+Since `s` is either 0 or 1, when we multiply it by 15 we get off or full brightness. We set the LED location according to the position of the incoming key press, x and y.
 
 We changed the `led` array, so we specify that the grid need refreshing:
 
@@ -176,7 +176,7 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 
 ### 3.1 Toggles
 
-*See grid-studies-3-1.pde for this step.*
+*See grid\_studies\_3_1.pde for this step.*
 
 First we'll create a new array called `step` that can hold 6 rows worth of step data. On key input we'll look for key-down events in the top six rows:
 
@@ -191,7 +191,7 @@ First we'll create a new array called `step` that can hold 6 rows worth of step 
 
 If this condition is true, we toggle the corresponding position in the `step` data and set the dirty flag so the grid will refresh.
 
-We will "build" the LED display from scratch each time we need to refresh. This will be done inside of `draw()` so we no longer need the `led` array to be global. Below we simply copy the `step` data to the `led` array, doing the proper multiplication by 11 in order to get almost-full brightness.
+We will "build" the LED display from scratch each time we need to refresh. This will be done inside of `draw()` so we no longer need the `led` array to be global. Below we simply copy the `step` data to the `led` array, doing the proper multiplication by 15 in order to get full brightness.
 
 ```java
 if(dirty) {
@@ -212,7 +212,7 @@ That'll get us started.
 
 ### 3.2 Play
 
-*See grid-studies-3-2.pde for this step.*
+*See grid\_studies\_3_2.pde for this step.*
 
 For simplicity we're going to make a not-very-smart timer to drive our sequencer. Basically we'll count `draw()` cycles and upon matching a specified interval, we'll take a step forward in the sequence.
 
@@ -242,7 +242,7 @@ In `draw()` we check `timer` against `STEP_TIME`. If they are equal, we process 
 
 You can change the speed by altering `STEP_TIME`.
 
-For the redraw we add highlighting for the play position:
+For the redraw we add highlighting for the play position. Note how the multiply by 15 has been decreased to 11 to provide another mid-level brightness. We now have a series of brightness levels helping to indicate playback, lit keys, and currently active keys:
 
 ```java
 int highlight;
@@ -264,7 +264,7 @@ During this loop which copies steps to the grid, we check if we're updating a co
 
 ### 3.3 Triggers
 
-*See grid-studies-3-3.pde for this step.*
+*See grid\_studies\_3_3.pde for this step.*
 
 When the playhead advances to a new row we want something to happen which corresponds to the toggled-on rows. We'll do two things: we'll show separate visual feedback on the grid in the second-to-last (trigger) row, and we'll call a draw something to the computer screen.
 
@@ -302,7 +302,7 @@ It's just drawing some lines. Some code is added throughout the file to set up d
 
 ### 3.4 Cutting
 
-*See grid-studies-3-4.pde for this step.*
+*See grid\_studies\_3_4.pde for this step.*
 
 We will now use the bottom row to dynamically cut the playback position. First let's add a position display to the last row, which will be inside `draw()`:
 
@@ -339,10 +339,12 @@ if(timer == STEP_TIME) {
 		play_position = 0;
 	else 
 		play_position++;
+		
+	cutting = false;
 // ...
 ```
 
-Now, when pressing keys on the bottom row it will cue the next position to be played.
+Now, when pressing keys on the bottom row it will cue the next position to be played. Note that we set `cutting = false` after each cycle so that each press only affects the timer once.
 
 ### 3.5 Loop
 
@@ -351,6 +353,15 @@ Lastly, we'll implement setting the loop start and end points with a two-press g
 ```java
 int keys_held, key_last;
 int loop_start, loop_end;
+```
+
+Setup the default loop length to begin with the full range:
+
+```java
+public void setup() {
+	...
+	loop_end = 15;
+}
 ```
 
 We count keys held on the bottom row thusly:
