@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import org.monome.*;
+=======
+import org.monome.Monome;
+>>>>>>> c840ca0dbb7ba72ab9d75a0ce323dad0143004fd
 import oscP5.*;
 
 Monome m;
