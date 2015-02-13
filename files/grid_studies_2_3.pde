@@ -1,4 +1,5 @@
-import org.monome.Monome;
+import org.monome.*;
+import oscP5.*;
 
 Monome m;
 int[][] led;
