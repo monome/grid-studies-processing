@@ -430,7 +430,7 @@ Done!
 
 *Processing* was designed by Ben Fry and Casey Reas and is maintained by the [Processing Foundation](processing).
 
-*monome-processing* was written and is maintained by [Tom Dinchak](https://soundcloud.com/phortran).
+*monome-processing* was written by and is maintained by [Tom Dinchak](https://soundcloud.com/phortran).
 
 This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](monome.org).
 
