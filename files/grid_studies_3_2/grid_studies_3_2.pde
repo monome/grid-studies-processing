@@ -1,5 +1,4 @@
 import org.monome.Monome;
-import oscP5.*;
 
 Monome m;
 boolean dirty;
@@ -60,4 +59,3 @@ public void key(int x, int y, int s) {
     dirty = true; 
   }
 }
-

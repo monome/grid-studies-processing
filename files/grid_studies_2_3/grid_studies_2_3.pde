@@ -1,5 +1,4 @@
 import org.monome.Monome;
-import oscP5.*;
 
 Monome m;
 int[][] led;
@@ -22,4 +21,3 @@ public void key(int x, int y, int s) {
   led[y][x] = s * 15;
   dirty = true;  
 }
-
