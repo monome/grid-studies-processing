@@ -1,5 +1,4 @@
 import org.monome.Monome;
-import oscP5.*;
 
 Monome m;
 boolean dirty;
